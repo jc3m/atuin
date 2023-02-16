@@ -24,7 +24,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <main className="container mx-auto px-4 my-2">
+      <RouterProvider router={router} />
+    </main>
   </React.StrictMode>
 );
 
