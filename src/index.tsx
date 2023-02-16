@@ -5,6 +5,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
+import { Root } from './core/Root';
 import { routes as experimentRoutes } from './experiments/routes';
 
 import './index.css';
@@ -14,9 +15,15 @@ import reportWebVitals from './reportWebVitals';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: <Root />,
+    children: [
+      {
+        path: '',
+        element: <App />,
+      },
+      experimentRoutes,
+    ],
   },
-  experimentRoutes,
 ]);
 
 const root = ReactDOM.createRoot(
@@ -24,9 +31,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <main className="container mx-auto px-4 my-2">
-      <RouterProvider router={router} />
-    </main>
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
