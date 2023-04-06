@@ -1,4 +1,0 @@
-common --enable_bzlmod
-
-# https://bazel.build/extending/rules#runfiles
-common --noenable_runfiles
