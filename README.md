@@ -1,3 +1,8 @@
 # Atuin Project
 
-`mesa`: Angular Application
+**Build Tooling:** [Bazel](https://bazel.build/)
+
+```
+$ brew install bazelisk
+$ brew install buildifier
+```
