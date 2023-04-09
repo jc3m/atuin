@@ -1,30 +1,31 @@
 package main
 
 import (
-	"net/http"
+	"database/sql"
+	"log"
 
 	"github.com/gin-gonic/gin"
+	"github.com/jc3m/atuin/db/tubul"
+	"github.com/jc3m/atuin/tubul/events"
+	_ "github.com/lib/pq"
 )
 
-type TubulEvent struct {
-	ID    string `json:"id"`
-	Title string `json:"title"`
-	Date  string `json:"Date"`
-}
-
-var events = []TubulEvent{
-	{ID: "1", Title: "Brandon Johnson elected Mayor of Chicago", Date: "2023-04-04"},
-	{ID: "2", Title: "Silicon Valley Bank collapses", Date: "2023-03-10"},
-	{ID: "3", Title: "Google lays off 12,000 employees", Date: "2023-01-20"},
-}
-
-func getEvents(c *gin.Context) {
-	c.IndentedJSON(http.StatusOK, events)
-}
-
 func main() {
+	db, err := sql.Open("postgres", "user=atuin password=password dbname=atuin host=localhost port=5200 sslmode=disable")
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	queries := tubul.New(db)
+
 	router := gin.Default()
-	router.GET("/events", getEvents)
+
+	te := events.TubulEvents{Queries: queries}
+	events := router.Group("/events")
+	{
+		events.GET("/", te.Get)
+	}
 
 	router.Run("localhost:8080")
 }
