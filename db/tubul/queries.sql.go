@@ -22,8 +22,8 @@ RETURNING id, title, event_date
 `
 
 type CreateEventParams struct {
-	Title     string
-	EventDate time.Time
+	Title     string    `json:"title"`
+	EventDate time.Time `json:"event_date"`
 }
 
 func (q *Queries) CreateEvent(ctx context.Context, arg CreateEventParams) (TubulEvent, error) {
@@ -78,9 +78,9 @@ RETURNING id, title, event_date
 `
 
 type UpdateEventParams struct {
-	ID        uuid.UUID
-	Title     string
-	EventDate time.Time
+	ID        uuid.UUID `json:"id"`
+	Title     string    `json:"title"`
+	EventDate time.Time `json:"event_date"`
 }
 
 func (q *Queries) UpdateEvent(ctx context.Context, arg UpdateEventParams) (TubulEvent, error) {

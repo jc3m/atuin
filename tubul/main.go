@@ -25,6 +25,7 @@ func main() {
 	events := router.Group("/events")
 	{
 		events.GET("/", te.Get)
+		events.POST("/", te.Post)
 	}
 
 	router.Run("localhost:8080")

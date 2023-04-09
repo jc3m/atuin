@@ -7,3 +7,4 @@ sql:
       go:
         package: "tubul"
         out: "tubul"
+        emit_json_tags: true

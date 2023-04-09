@@ -11,7 +11,7 @@ import (
 )
 
 type TubulEvent struct {
-	ID        uuid.UUID
-	Title     string
-	EventDate time.Time
+	ID        uuid.UUID `json:"id"`
+	Title     string    `json:"title"`
+	EventDate time.Time `json:"event_date"`
 }
