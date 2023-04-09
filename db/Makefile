@@ -11,3 +11,13 @@ goose-status:
 goose-up:
 	cd migrations; \
 	goose postgres $(GOOSE_DBSTRING) up
+
+
+.PHONY: generate
+generate:
+	docker run --rm -v $$(pwd):/src -w /src kjconroy/sqlc generate
+
+
+.PHONY: dump
+dump:
+	pg_dump --host localhost --port 5200 --username atuin --format plain --file dump.sql --table tubul.events atuin

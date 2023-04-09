@@ -1,0 +1,9 @@
+version: "2"
+sql:
+  - engine: "postgresql"
+    queries: "queries.sql"
+    schema: "migrations/20230407211525_events_table.sql"
+    gen:
+      go:
+        package: "tubul"
+        out: "tubul"
